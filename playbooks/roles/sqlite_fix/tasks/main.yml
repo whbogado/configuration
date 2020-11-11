@@ -33,7 +33,9 @@
     dest: "/tmp/{{ item.name }}"
     url: "{{ item.url }}"
   with_items: "{{ sqlite_s3_packages }}"
+  when: ansible_distribution_release == 'xenial'
 
 - name: Install sqlite packages
   shell: gdebi -nq /tmp/{{ item.name }}
   with_items: "{{ sqlite_s3_packages }}"
+  when: ansible_distribution_release == 'xenial'
